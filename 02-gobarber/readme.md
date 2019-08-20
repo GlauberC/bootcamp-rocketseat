@@ -89,4 +89,17 @@ docker logs database
 ```sh
   yarn sequelize db:migrate
 ```
+## Caso precise reverter a migrate
+```sh
+  yarn sequelize db:migrate:undo
+```
+## Caso precise reverter todas as migrate
+```sh
+  yarn sequelize db:migrate:undo:all
+```
 
+# Aplicação
+## Criação do model User
+## Criação do database/index.js
+## Importação em app.js
+## Importação e configuração TESTE em routes.js
