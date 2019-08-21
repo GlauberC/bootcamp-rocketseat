@@ -24,6 +24,8 @@
 
 ## Configurações no VSCODE
 
+## yarn eslint --init
+
 ## Configurações do arquivos .eslintrc.js
 
 - class-methods-use-this
