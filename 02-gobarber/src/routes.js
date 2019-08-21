@@ -1,15 +1,16 @@
 import { Router } from 'express';
-import User from './app/models/User';
+import UserController from './app/controllers/UserController';
+import SessionController from './app/controllers/SessionControlller';
+
+import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 
-routes.get('/', async (req, res) => {
-  const user = await User.create({
-    name: 'Glauber Carvalho',
-    email: 'glaubercarv@email.com',
-    password_hash: '123456789',
-  });
-  return res.json(user);
-});
+routes.post('/users', UserController.store);
+routes.post('/sessions', SessionController.store);
+
+routes.use(authMiddleware); // middleware global, mas que só funciona para rotas abaixo dele
+
+routes.put('/users', UserController.update);
 
 export default routes;
