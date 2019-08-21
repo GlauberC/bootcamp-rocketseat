@@ -1,0 +1,95 @@
+@import "./style.scss";
+
+.user-info {
+  width: 260px;
+  img.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid $colorSec1;
+    margin-top: -150px;
+  }
+  h1 {
+    font-size: 21px;
+    color: $colorText3;
+    margin-top: 10px;
+  }
+  span {
+    font-size: 14px;
+    color: $colorText4;
+  }
+  p {
+    font-size: 14px;
+    color: $colorText3;
+    margin-top: 15px;
+  }
+  ul {
+    margin-top: 20px;
+    li {
+      font-size: 14px;
+      color: $colorText4;
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      &:first-child {
+        margin: 0;
+      }
+      &:nth-child(2) {
+        color: $colorPrim1;
+      }
+      img {
+        margin-right: 10px;
+        width: 16px;
+      }
+    }
+  }
+}
+
+.widget {
+  width: 260px;
+  margin-top: 20px;
+
+  strong {
+    font-weight: normal;
+    color: $colorPrim1;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+  img {
+    margin-right: 5px;
+    width: 16px;
+  }
+}
+
+.followers {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      background: $colorSec4;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      flex: 1 0 auto;
+      margin-right: 5px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.images {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      background: $colorSec4;
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      flex: 1 0 auto;
+      margin-right: 5px;
+      margin-top: 5px;
+    }
+  }
+}

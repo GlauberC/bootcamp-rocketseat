@@ -1,0 +1,28 @@
+@import "./style.scss";
+
+.timeline {
+  flex: 1;
+  background: $colorSec1;
+  margin: 10px 20px;
+  height: 720px;
+  overflow: auto;
+
+  nav {
+    border-bottom: 1px solid $colorSec4;
+    padding: 10px 15px;
+    ul {
+      display: flex;
+      li {
+        color: $colorPrim1;
+        margin-left: 15px;
+        font-size: 18px;
+        font-weight: bold;
+
+        &.active {
+          margin: 0;
+          color: $colorText3;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+@import "./style.scss";
+
+.bar {
+  height: 59px;
+  background: $colorSec1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 285px;
+    height: 100%;
+    flex-wrap: wrap;
+  }
+}
+.bar .container {
+  ul {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      position: relative;
+      span {
+        color: $colorText2;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      strong {
+        font-size: 18px;
+        color: $colorText2;
+        font-weight: bold;
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+.bar .container .active {
+  strong {
+    color: $colorPrim1;
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $colorPrim1;
+  }
+}
+
+.bar .container .actions {
+  display: flex;
+  button {
+    color: $colorPrim1;
+    background: transparent;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid $colorPrim1;
+    border-radius: 16px;
+    margin-right: 20px;
+  }
+}

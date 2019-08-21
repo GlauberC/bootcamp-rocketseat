@@ -1,0 +1,54 @@
+@import "./style.scss";
+
+.widgets {
+  width: 290px;
+  margin-top: 10px;
+
+  .widget-item {
+    padding: 15px;
+    background: $colorSec1;
+  }
+}
+
+.widget-item .title {
+  display: flex;
+  align-items: baseline;
+  strong {
+    font-size: 18px;
+    color: $colorText3;
+  }
+  p {
+    color: $colorPrim1;
+    font-size: 12px;
+    &::before {
+      content: "";
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      margin-left: 5px;
+      margin-right: 5px;
+      background: $colorText3;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+  }
+}
+.trends {
+  margin-top: 15px;
+  ul {
+    margin-top: 5px;
+    li {
+      color: $colorPrim1;
+      font-size: 14px;
+      padding-top: 5px;
+    }
+  }
+}
+footer {
+  margin-top: 20px;
+  p {
+    margin-left: 15px;
+    font-size: 12px;
+    color: $colorText2;
+  }
+}

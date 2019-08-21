@@ -1,0 +1,72 @@
+@import "./style.scss";
+
+.main-header {
+  background: $colorSec1;
+  padding: 10px 30px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.main-header nav {
+  ul {
+    display: flex;
+    li {
+      font-size: 13px;
+      color: $colorText2;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      margin-left: 30px;
+
+      &:first-child {
+        margin: 0;
+      }
+
+      img {
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+.main-header .side {
+  display: flex;
+
+  input {
+    width: 220px;
+    border: solid 1px $colorSec2;
+    color: $colorText2;
+    height: 34px;
+    padding: 0 35px 0 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    background: $colorSec3 url("../assets/img/search.svg") no-repeat 190px
+      center;
+  }
+  img {
+    height: 34px;
+    width: 35px;
+    border-radius: 50%;
+    margin: 0 15px;
+  }
+  button {
+    color: $colorText1;
+    background: $colorPrim1;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 0;
+    border-radius: 16px;
+  }
+}

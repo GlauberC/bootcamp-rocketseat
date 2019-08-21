@@ -1,0 +1,66 @@
+@import "./style.scss";
+
+.follow {
+  ul {
+    margin-top: 10px;
+    li {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid $colorSec4;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border: 0;
+      }
+
+      span {
+        color: $colorText2;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.follow .profile {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .info {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      font-size: 14px;
+      color: $colorText3;
+      span {
+        font-weight: normal;
+        color: $colorText2;
+      }
+    }
+    button {
+      color: $colorPrim1;
+      background: transparent;
+      height: 27px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      font-weight: bold;
+      font-size: 14px;
+      border: 1px solid $colorPrim1;
+      border-radius: 16px;
+      margin-top: 4px;
+    }
+  }
+}
