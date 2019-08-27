@@ -157,3 +157,73 @@
 ### Criar NotificationController com o método index
 
 ### Criar rota no insomnia
+
+# Criar update para notificações
+
+### update em NotificationController
+
+### importar nas rotas
+
+# Cancelamento de agendamentos
+
+### criar rota delete do appointments
+
+### criar método delete no AppointmentController
+
+# Nodemailer para envio de emails
+
+```sh
+  yarn add nodemailer
+```
+### Criar conta no mailtrap.io
+
+### criar / editar config/mail.js
+
+### Transferir credenciais do mailtrap para o config/mail.js
+
+### Criar / editar  src/lib/Mail.js
+
+### importar no AppointmentController
+
+# Criando template para os emails
+
+```sh
+  yarn add express-handlebars nodemailer-express-handlebars
+```
+
+### criar pasta e arquivos
+* app/views/email/layouts
+* app/views/email/layouts/default.hbs
+* app/views/email/partials
+* app/views/email/partials/footer.hbs
+* app/views/email/cancellation.hbs
+
+### importar e configurar no lib/Mail.js
+
+### Configurar layouts/default.hbs
+### Configurar partials/footer.hbs
+### Configurar cancellation.hbs
+
+### Configurar template no AppointmentController
+
+# Serviços de segundo plano
+
+```sh
+  docker run --name redisbarber -p 6379:6379 -d -t redis:alpine
+```
+```sh
+  yarn add bee-queue
+```
+
+### Criar / Configurar lib/Queue.js
+### Criar / Configurar app/jobs/CancellationMail.js
+### Criar / Configurar config/redis.js
+### importar Queue e CancellationMain em AppointmentController
+### Criar / Configurar src/queue.js
+### Configurar inicialização do queue no package.json
+### Configurar Possíveis Falhas
+
+
+
+
+
