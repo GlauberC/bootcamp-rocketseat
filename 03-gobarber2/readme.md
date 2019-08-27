@@ -223,6 +223,40 @@
 ### Configurar inicialização do queue no package.json
 ### Configurar Possíveis Falhas
 
+# Listar horários vagos por dia
+### Criar rota
+### Criar / configurar AvailableController index
+### No insomnia
+- criar rota get para available
+- Query date com o timestamp do frontend ex: 1566916655000
+- Colocar o token
+
+# Campows virtuais no agendamento
+### adicionar o campo past no models/Appointment.js
+### Exibir na listagem o novo campo virtual em AppointmentController
+
+# Tratamento de excessões
+### sentry.io
+### install sentry/node como sugerido no site
+### importar o sentry no app.js
+### criar/configurar config/sentry.js
+```sh
+  sudo yarn add express-async-errors
+```
+### importar o express-async-errors no app.js
+### Criar exception handler no app.js
+```sh
+  yarn add youch
+```
+
+# Variáveis de âmbiente
+### criar / configurar .env
+### Adicionar o .env no gitignore
+```sh
+  yarn add dotenv
+```
+### Importar no app.js e no queue.js e no database.js
+
 
 
 
