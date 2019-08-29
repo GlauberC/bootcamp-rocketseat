@@ -55,6 +55,10 @@
 
 ### Mapear Associações em database/index.js
 
+### Criar campo virtual URL no model File para retornar o endereço da imagem
+
+### Configurar leitor de arquivos estático em app
+
 # Rota para listar providers
 
 ### Criar rota get providers
@@ -65,9 +69,6 @@
 
 - attributes
 
-### Criar campo virtual URL no model File para retornar o endereço da imagem
-
-### Configurar leitor de arquivos estático em app
 
 # Criar tabela de agendamentos
 
