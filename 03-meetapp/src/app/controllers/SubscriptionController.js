@@ -3,6 +3,8 @@ import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
 import File from '../models/File';
+import Queue from '../../lib/Queue';
+import SubscribeMail from '../jobs/SubscribeMail';
 
 class SubscriptionController {
   async store(req, res) {
@@ -15,6 +17,7 @@ class SubscriptionController {
     const user = await User.findByPk(req.userId);
     const { meetup_id } = req.body;
     const meetup = await Meetup.findByPk(meetup_id);
+    const host = await User.findByPk(meetup.user_id);
 
     //
     //  verify if it is a past meetup
@@ -49,8 +52,9 @@ class SubscriptionController {
     }
 
     //
-    // FALTA O ENVIO DE EMAIL
+    // Send email to the creator of the meetup
     //
+    await Queue.add(SubscribeMail.key, { meetup, user, host });
 
     const subscription = await Subscription.create({
       user_id: user.id,
@@ -79,6 +83,7 @@ class SubscriptionController {
             'date',
             'past',
           ],
+          order: ['date'],
           include: [
             {
               model: File,
@@ -95,7 +100,9 @@ class SubscriptionController {
       ],
     });
 
-    const nonPastSubs = subs.filter(sub => !sub.meetup.past);
+    const nonPastSubs = subs
+      .filter(sub => !sub.meetup.past)
+      .sort((a, b) => a.meetup.date - b.meetup.date);
 
     return res.json(nonPastSubs);
   }
