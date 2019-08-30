@@ -1,0 +1,17 @@
+header.rodape {
+  background: #4a90e2;
+  padding: 20px 0;
+}
+header.rodape div.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 42px;
+}
+header.rodape div.container h1 {
+  color: #fff;
+  font-weight: bolder;
+  font-size: 32px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}

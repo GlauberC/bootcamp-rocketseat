@@ -1,0 +1,25 @@
+.response-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.response-container .img {
+  min-width: 32px;
+  height: 32px;
+  background: #c3c3c3;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
+.response-container p {
+  background: #e1e1e1;
+  padding: 10px;
+  max-width: 592px;
+  border-radius: 15px;
+}
+
+.response-container p strong {
+  font-weight: bold;
+}
