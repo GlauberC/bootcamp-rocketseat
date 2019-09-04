@@ -69,3 +69,11 @@ yarn add axios
 ```
 * Criar / Configurar services/api.js
 
+# Passar parametros rotas
+* Transformar string em objeto
+* enviar o parametro no url
+* colocar o :param no routes
+* acessar com o objeto match nas props
+
+# Duas ou mais promisses em sequencias
+* Usa o promise.all para que todas sejam feitas no mesmo instante
