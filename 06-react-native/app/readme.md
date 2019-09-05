@@ -30,7 +30,33 @@
 ```sh
   yarn add react-navigation react-native-gesture-handler react-native-reanimated
 ```
+* Adicionar os imports no MainActivity.java (https://kmagiera.github.io/react-native-gesture-handler/docs/getting-started.html)
 * PARA O STACK NAVIGATOR
 ```sh
   sudo yarn add react-navigation-stack
 ```
+
+# Icones no react-native
+```sh
+  yarn add react-native-vector-icons
+```
+```sh
+  react-native link react-native-vector-icons
+```
+
+# Teclado sumir
+* import {Keyboard} from 'react-native'
+* Keyboard.dismiss()
+
+# loading
+* ActivityIndicator from react-native
+* <ActivityIndicator color="#fff" />
+
+#asyncstorage
+```sh
+  sudo yarn add @react-native-community/async-storage
+```
+
+# Parametros de class em funções estaticas
+* Transformar em função que recebe um objeto
+* passar os parametros por argumento
