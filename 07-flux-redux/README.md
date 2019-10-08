@@ -58,5 +58,45 @@
   yarn add immer
 ```
 
+# Boas práticas
+- Separar as actions em modules/cart/actions.js
+- importar nos componentes
+- utilizar o bindActionCreators para simplificar a sintaxe
+  - importar o bindActionCreators do redux
+  - criar o mapDispatchToProps no final do arquivo
+  ```js
+    const mapDispatchToProps = dispatch =>
+    bindActionCreators(CartActions, dispatch);
+
+    export default connect(
+      null,
+      mapDispatchToProps
+    )(Home);
+  ```
+  - Na hora de usar basta fazer:
+  ```js
+      const { addToCart } = this.props;
+      addToCart(product);
+  ```
+
+  # Trabalhando com o redux saga
+  ```sh
+    yarn add redux-saga
+  ```
+  - criar store/modules/cart/sagas.js
+  - criar function* para criar um generator que é mais poderoso que o async await
+  - criar os reducers request and success
+  - criar store/modules/rootSaga.js
+  - importar e configurtar os componentes do redux saga no store/index.js
+  - configurar o plugin do reactotron
+    ```sh
+      yarn add reactotron-redux-saga
+    ```
+  - importar no config/ReactotronConfig.js
+  - criar sagaMonitor no store/index.js
+
+
+
+
 
 
