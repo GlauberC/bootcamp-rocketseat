@@ -7,6 +7,7 @@ export const Container = styled.View`
   align-items: center;
   padding: 20px;
 `;
+export const LogoBtn = styled.TouchableOpacity``;
 export const IconView = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
