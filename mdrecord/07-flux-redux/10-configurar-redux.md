@@ -1,20 +1,25 @@
 # Configurar redux
+
 ```sh
   yarn add redux react-redux
 ```
 
 # Store
+
 - Store/index.js
+
 ```js
-  import {createStore } from 'redux'
+import { createStore } from "redux";
 
-  const store = createStore()
+const store = createStore();
 
-  export default store
+export default store;
 ```
 
 # importar store no app.js
+
 - app.js
+
 ```js
   ...
   import { Provider } from 'react-redux';
@@ -31,15 +36,19 @@
 ```
 
 # module cart
+
 - store/modules/cart/reducer.js
+
 ```js
-export default function cart(){
+export default function cart() {
   return [];
 }
 ```
 
 # importar reducer em Store
+
 - Store/index.js
+
 ```js
   ...
   import reducer from './modules/cart/reducer'
@@ -47,23 +56,28 @@ export default function cart(){
 ```
 
 # preparar configuração para vários reducers
+
 - store/modules/rootReducer.js
+
 ```js
-  import { combineReducers } from 'redux'
+import { combineReducers } from "redux";
 
-  import cart from './cart/reducer'
+import cart from "./cart/reducer";
 
-  export default combineReducers({
-    cart
-  })
+export default combineReducers({
+  cart
+});
 ```
 
 # importar rootReducer em Store
+
 - Store/index.js
+
 ```js
   ...
+  // import cart from "./cart/reducer";
   import rootReducer from './modules/rootReducer'
-  
-  const store = createStore(reducer)
+
+  const store = createStore(rootReducer)
   ...
 ```

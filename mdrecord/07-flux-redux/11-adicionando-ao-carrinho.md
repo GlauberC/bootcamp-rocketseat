@@ -1,5 +1,7 @@
 # configurando na Home
+
 - pages/Home/index.js
+
 ```js
   ...
   import { connect } from 'react-redux'
@@ -11,42 +13,46 @@
 
   export default connect()(Home)
 ```
-- configurando função de adicionar ao carrinho 
+
+- configurando função de adicionar ao carrinho
+
 ```js
-  handleAddProdcut = product => {
-    const {dispatch} = this.props
+handleAddProdcut = product => {
+  const { dispatch } = this.props;
 
-    dispatch({
-      type: '@cart/ADD',
-      product,
-    })
-
-  }
+  dispatch({
+    type: "@cart/ADD",
+    product
+  });
+};
 ```
 
 # Configurando reducer
+
 - modules/cart/reducer.js
+
 ```js
-  export default function cart(state = [], action){
-    switch (action.type){
+export default function cart(state = [], action) {
+  switch (action.type) {
+    case "@cart/ADD":
+      return [...state, action.product];
 
-      case '@cart/ADD':
-        return[ ...state, action.product];
-
-      default:
-        return state;
-    }
+    default:
+      return state;
   }
+}
 ```
 
 # acessando reducer na header
+
 - Header/index.js
+
 ```js
   ...
   import {connect} from 'react-redux'
   ...
 
-  function Header({cart}){
+  function Header({cartSize}){
     ...
   }
 

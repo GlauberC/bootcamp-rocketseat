@@ -19,7 +19,7 @@ export const ProductView = styled.View`
 `;
 export const HeaderProductView = styled.View`
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 `;
@@ -28,8 +28,7 @@ export const ProductImage = styled.Image`
   height: 80px;
 `;
 export const ProductDescriptionView = styled.View`
-  margin-left: 15px;
-  max-width: 200px;
+  max-width: 160px;
 `;
 export const ProductTitle = styled.Text`
   font-size: 18px;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux';
 import Header from '../../components/Header';
 
 import {
@@ -27,79 +27,41 @@ import {
   FinalizarButtonText,
 } from './styles';
 
-const stock = [
-  {
-    id: '1',
-    title: 'Tênis de Caminhada Leve Confortável',
-    price: 179.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-  },
-  {
-    id: '2',
-    title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
-    price: 139.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
-  },
-  {
-    id: '3',
-    title: 'Tênis Adidas Duramo Lite 2.0',
-    price: 219.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg',
-  },
-  {
-    id: '5',
-    title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
-    price: 139.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
-  },
-  {
-    id: '6',
-    title: 'Tênis Adidas Duramo Lite 2.0',
-    price: 219.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg',
-  },
-  {
-    id: '4',
-    title: 'Tênis de Caminhada Leve Confortável',
-    price: 179.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-  },
-];
+class Cart extends Component {
+  handleRemoveProduct = id => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: '@cart/REMOVE',
+      id,
+    });
+  };
 
-export default class Cart extends Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation, cart } = this.props;
     return (
       <Container>
         <Header navigation={navigation} />
         <AllCartView>
           <ListCart
-            data={stock}
+            data={cart}
             keyExtractor={item => String(item.id)}
             renderItem={({ item }) => (
               <ProductView>
                 <HeaderProductView>
                   <ProductImage
                     source={{
-                      uri:
-                        'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
+                      uri: item.image,
                     }}
                   />
                   <ProductDescriptionView>
-                    <ProductTitle>
-                      Tênis de Caminhada Leve Confortável
-                    </ProductTitle>
-                    <ProductPriceText>179,90</ProductPriceText>
+                    <ProductTitle>{item.title}</ProductTitle>
+                    <ProductPriceText>{item.priceFormatted}</ProductPriceText>
                   </ProductDescriptionView>
+                  <IconButton onPress={() => this.handleRemoveProduct(item.id)}>
+                    <Icon name="close" size={28} color="#7159C1" />
+                  </IconButton>
                 </HeaderProductView>
                 <QuantiPriceView>
-                  {/* L Arr */}
                   <QuantView>
                     <IconButton>
                       <Icon
@@ -109,7 +71,7 @@ export default class Cart extends Component {
                       />
                     </IconButton>
                     <QuantBlockView>
-                      <QuantText>3</QuantText>
+                      <QuantText>{item.amount}</QuantText>
                     </QuantBlockView>
                     <IconButton>
                       <Icon
@@ -136,3 +98,9 @@ export default class Cart extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  cart: state.cart,
+});
+
+export default connect(mapStateToProps)(Cart);

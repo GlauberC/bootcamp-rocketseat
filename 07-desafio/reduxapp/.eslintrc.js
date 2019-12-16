@@ -29,5 +29,6 @@ module.exports = {
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
     'react/state-in-constructor': 'off',
+    'no-param-reassign': 'off',
   },
 };

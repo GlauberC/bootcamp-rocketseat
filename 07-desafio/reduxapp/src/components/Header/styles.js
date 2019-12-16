@@ -8,7 +8,7 @@ export const Container = styled.View`
   padding: 20px;
 `;
 export const LogoBtn = styled.TouchableOpacity``;
-export const IconView = styled.TouchableOpacity`
+export const IconButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   flex-direction: row;
