@@ -1,5 +1,7 @@
 'use strict'
 
+const Antl = use('Antl')
+
 class ResetPassword {
   get validateAll () {
     return true
@@ -9,6 +11,10 @@ class ResetPassword {
     return {
       // validation rules
     }
+  }
+
+  get messages () {
+    return Antl.list('validation')
   }
 }
 
