@@ -1,16 +1,21 @@
 # alterando o reducer
+
 - modules/cart/reducer.js
+
 ```js
   ...
-    return produce(state, draft => {
-      const { product } = action;
-
-      draft.push(product);
-    });
+    case '@cart/ADD_SUCCESS':
+      return produce(state, draft => {
+        const { product } = action;
+        draft.push(product);
+      });
   ...
 ```
+
 # alterando o saga
+
 - modules/cart/sagas.js
+
 ```js
   ...
   import { ..., select, ... } from 'redux-saga/effects';
@@ -26,7 +31,7 @@
     );
 
     if (productExists) {
-      
+
       const amount = productExists.amount + 1;
       yield put(updateAmount(id, amount));
 

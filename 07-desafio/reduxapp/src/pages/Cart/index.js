@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as CartActions from '../../store/modules/cart/actions';
 import Header from '../../components/Header';
+import { formatPrice } from '../../util/format';
 
 import {
   Container,
@@ -28,16 +31,17 @@ import {
 } from './styles';
 
 class Cart extends Component {
-  handleRemoveProduct = id => {
-    const { dispatch } = this.props;
-    dispatch({
-      type: '@cart/REMOVE',
-      id,
-    });
-  };
-
   render() {
-    const { navigation, cart } = this.props;
+    const { updateAmountRequest } = this.props;
+    function increment(product) {
+      updateAmountRequest(product.id, product.amount + 1);
+    }
+    function decrement(product) {
+      updateAmountRequest(product.id, product.amount - 1);
+    }
+
+    const { removeFromCart } = this.props;
+    const { navigation, cart, total } = this.props;
     return (
       <Container>
         <Header navigation={navigation} />
@@ -57,13 +61,13 @@ class Cart extends Component {
                     <ProductTitle>{item.title}</ProductTitle>
                     <ProductPriceText>{item.priceFormatted}</ProductPriceText>
                   </ProductDescriptionView>
-                  <IconButton onPress={() => this.handleRemoveProduct(item.id)}>
+                  <IconButton onPress={() => removeFromCart(item.id)}>
                     <Icon name="close" size={28} color="#7159C1" />
                   </IconButton>
                 </HeaderProductView>
                 <QuantiPriceView>
                   <QuantView>
-                    <IconButton>
+                    <IconButton onPress={() => decrement(item)}>
                       <Icon
                         name="keyboard-arrow-left"
                         size={28}
@@ -73,7 +77,7 @@ class Cart extends Component {
                     <QuantBlockView>
                       <QuantText>{item.amount}</QuantText>
                     </QuantBlockView>
-                    <IconButton>
+                    <IconButton onPress={() => increment(item)}>
                       <Icon
                         name="keyboard-arrow-right"
                         size={28}
@@ -81,14 +85,14 @@ class Cart extends Component {
                       />
                     </IconButton>
                   </QuantView>
-                  <ProductTotal>539,70</ProductTotal>
+                  <ProductTotal>{item.subTotal}</ProductTotal>
                 </QuantiPriceView>
               </ProductView>
             )}
           />
           <TotalView>
             <TotalLabel>Total</TotalLabel>
-            <TotalCartText>1619,10</TotalCartText>
+            <TotalCartText>{total}</TotalCartText>
           </TotalView>
           <FinalizarButton>
             <FinalizarButtonText>Finalizar Pedido</FinalizarButtonText>
@@ -100,7 +104,21 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart,
+  cart: state.cart.map(product => ({
+    ...product,
+    subTotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0)
+  ),
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);

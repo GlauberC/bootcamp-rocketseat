@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import api from '../../services/api';
+import * as CartActions from '../../store/modules/cart/actions';
 import { formatPrice } from '../../util/format';
 
 import {
@@ -34,17 +37,14 @@ class Home extends Component {
     this.setState({ products: data });
   }
 
-  handleAddProduct = product => {
-    const { dispatch } = this.props;
+  handleAddProduct = id => {
+    const { addToCartRequest } = this.props;
 
-    dispatch({
-      type: '@cart/ADD',
-      product,
-    });
+    addToCartRequest(id);
   };
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, amount } = this.props;
     const { products } = this.state;
     return (
       <Container>
@@ -58,10 +58,10 @@ class Home extends Component {
               <ProdutoImage source={{ uri: item.image }} />
               <ProdutoTitle>{item.title}</ProdutoTitle>
               <ProdutoPrice>{item.priceFormatted}</ProdutoPrice>
-              <AdicionarButton onPress={() => this.handleAddProduct(item)}>
+              <AdicionarButton onPress={() => this.handleAddProduct(item.id)}>
                 <CartIcon>
                   <Icon name="shopping-cart" size={16} color="#fff" />
-                  <CardNumber>1</CardNumber>
+                  <CardNumber>{amount[item.id] || 0}</CardNumber>
                 </CartIcon>
                 <AdicionarTitle>Adicionar</AdicionarTitle>
               </AdicionarButton>
@@ -73,4 +73,17 @@ class Home extends Component {
   }
 }
 
-export default connect()(Home);
+const mapStateToProps = state => ({
+  amount: state.cart.reduce((amount, product) => {
+    amount[product.id] = product.amount;
+    return amount;
+  }, {}),
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
