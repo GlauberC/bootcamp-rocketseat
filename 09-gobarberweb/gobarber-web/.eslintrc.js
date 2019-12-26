@@ -24,7 +24,9 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-props-no-spreading": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-useless-return": "off",
+    "no-param-reassign": "off"
   },
   settings: {
     "import/resolver": {
