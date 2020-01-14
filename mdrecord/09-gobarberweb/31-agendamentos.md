@@ -1,3 +1,7 @@
+- src/pages/Dashboard/index.js
+
+```js
+
 import React, { useState, useMemo, useEffect } from "react";
 import {
   format,
@@ -89,3 +93,6 @@ export default function Dashboard() {
     </Container>
   );
 }
+
+
+```

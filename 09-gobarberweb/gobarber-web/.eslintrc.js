@@ -27,7 +27,9 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "no-useless-return": "off",
     "no-param-reassign": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "prefer-object-spread": "off",
+    camelcase: "off"
   },
   settings: {
     "import/resolver": {
