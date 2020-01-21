@@ -1,3 +1,5 @@
+- src/routes.js
+```js
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import SignIn from './pages/SignIn';
@@ -35,3 +37,47 @@ export default (signedIn = false) =>
       }
     )
   );
+
+
+```
+- src/pages/Dashboard/index.js
+```js
+import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+// import { Container } from './styles';
+import Background from '../../components/Background';
+
+export default function Dashboard() {
+  return <Background />;
+}
+
+Dashboard.navigationOptions = {
+  tabBarLabel: 'Agendamentos',
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="event" size={20} color={tintColor} />
+  ),
+};
+
+```
+- src/pages/Profile/index.js
+```js
+import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+// import { Container } from './styles';
+
+import Background from '../../components/Background';
+
+export default function Profile() {
+  return <Background />;
+}
+
+Profile.navigationOptions = {
+  tabBarLabel: 'Meu perfil',
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="person" size={20} color={tintColor} />
+  ),
+};
+
+```
