@@ -1,3 +1,10 @@
+```sh
+sudo yarn add react-navigation-stack
+sudo yarn add @react-native-community/masked-view
+```
+
+- src/routes.js
+```js
 import React from 'react';
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -63,7 +70,6 @@ export default (signedIn = false) =>
             Profile,
           },
           {
-            resetOnBlur: true,
             tabBarOptions: {
               keyboardHidesTabBar: true,
               activeTintColor: '#fff',
@@ -80,3 +86,27 @@ export default (signedIn = false) =>
       }
     )
   );
+
+```
+- src/pages/New/SelectProvider/index.js
+```js
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import Background from '../../../components/Background';
+
+export default function SelectProvider() {
+  return <Background />;
+}
+
+SelectProvider.navigationOptions = ({ navigation }) => ({
+  title: 'Selecione o prestador',
+  headerLeft: () => (
+    <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+      <Icon name="chevron-left" size={28} color="#fff" />
+    </TouchableOpacity>
+  ),
+});
+
+```

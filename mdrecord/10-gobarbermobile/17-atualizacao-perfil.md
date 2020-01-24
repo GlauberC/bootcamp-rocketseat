@@ -1,3 +1,38 @@
+- src/store/modules/user/sagas.js
+```js
+import { takeLatest, call, put, all } from 'redux-saga/effects';
+import { Alert } from 'react-native';
+import { updateProfileSuccess, updateProfileFailure } from './actions';
+
+import api from '../../../services/api';
+
+export function* updateProfile({ payload }) {
+  try {
+    const { name, email, ...rest } = payload.data;
+
+    const profile = Object.assign(
+      { name, email },
+      rest.oldPassword ? rest : {}
+    );
+    const response = yield call(api.put, 'users', profile);
+
+    Alert.alert('Sucesso!', 'Perfil atualizado com sucesso');
+    yield put(updateProfileSuccess(response.data));
+  } catch (err) {
+    Alert.alert(
+      'Falha na atualização',
+      'Houve um erro na atualização do perfil, verfique seus dados'
+    );
+    yield put(updateProfileFailure());
+  }
+}
+
+export default all([takeLatest('@user/UPDATE_PROFILE_REQUEST', updateProfile)]);
+
+```
+
+- src/pages/Profile/index.js 
+```js
 import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -9,11 +44,9 @@ import {
   Form,
   FormInput,
   SubmitButton,
-  LogoutButton,
 } from './styles';
 
 import { updateProfileRequest } from '../../store/modules/user/actions';
-import { signOut } from '../../store/modules/auth/actions';
 import Background from '../../components/Background';
 
 export default function Profile() {
@@ -42,16 +75,11 @@ export default function Profile() {
       })
     );
   }
-
   useEffect(() => {
     setPassword('');
     setOldPassword('');
     setConfirmPassword('');
   }, [profile]);
-
-  function handleLogout() {
-    dispatch(signOut());
-  }
 
   return (
     <Background>
@@ -118,7 +146,6 @@ export default function Profile() {
           />
 
           <SubmitButton onPress={handleSubmit}>Atualizar perfil</SubmitButton>
-          <LogoutButton onPress={handleLogout}>Sair do Gobarber</LogoutButton>
         </Form>
       </Container>
     </Background>
@@ -131,3 +158,43 @@ Profile.navigationOptions = {
     <Icon name="person" size={20} color={tintColor} />
   ),
 };
+
+```
+- src/pages/Profile/styles.js 
+```js
+import styled from 'styled-components/native';
+
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+
+export const Container = styled.SafeAreaView`
+  flex: 1;
+`;
+export const Title = styled.Text`
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 30px;
+`;
+
+export const Separator = styled.View`
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 20px 0 30px;
+`;
+
+export const Form = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { padding: 30 },
+})`
+  align-self: stretch;
+`;
+export const FormInput = styled(Input)`
+  margin-bottom: 10px;
+`;
+export const SubmitButton = styled(Button)`
+  margin-top: 5px;
+`;
+
+```

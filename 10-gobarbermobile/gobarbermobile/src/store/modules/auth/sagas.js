@@ -41,7 +41,7 @@ export function* signUp({ payload }) {
     const { name, email, password } = payload;
     yield call(api.post, 'users', { name, email, password });
 
-    // history.push('/');
+    Alert.alert('Usuário Cadastrado', 'Cadastro realizado com succeso');
   } catch (err) {
     Alert.alert(
       'Falha no cadastro',

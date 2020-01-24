@@ -27,8 +27,9 @@ export default function Header() {
             </div>
             <img
               src={
-                profile.avatar.url ||
-                "https://api.adorable.io/avatars/50/abott@adorable.png"
+                profile.avatar !== null
+                  ? profile.avatar.url
+                  : "https://api.adorable.io/avatars/50/abott@adorable.png"
               }
               alt={profile.name}
             />
